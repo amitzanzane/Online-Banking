@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @using System.Web.Optimization
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="l-nav">
+        <nav class="nav">
+            <ul>
+                <li class="nav-primary"><a href="@Url.Action("BankPage", "Home")">Home</a></li>
+                <li class="nav-primary"><a href="@Url.Action("Statement", "Home")">Account Statement</a></li>
+                <li class="nav-primary"><a href="@Url.Action("Transfer", "Home")">Transfer</a></li>
+                <li class="nav-primary"><a href="@Url.Action("Balance", "Home")">Balance</a></li>
+                <li class="nav-secondary"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <form align="right" name="form1" method="post" action="log_out.php">
+        <label class="logoutLblPos">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-default">Sign Out</a>
+        </label>
+    </form>
+
+    <style>
+        .logoutLblPos {
+            position: fixed;
+            right: 10px;
+            top: 5px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #F0F8FF; /*#5d676c;*/
+            font-family: "Open Sans", sans-serif;
+        }
+
+
+        .l-nav {
+            position: absolute;
+            width: 240px;
+            display: block;
+            background: #3a4043;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+
+        .nav {
+            width: 180px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 30px;
+            overflow: auto;
+        }
+
+            .nav ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .nav li {
+                margin: 0;
+                padding: 0;
+                -webkit-transition: 0.25s;
+                -moz-transition: 0.25s;
+                transition: 0.25s;
+            }
+
+            .nav a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 20px;
+                font-weight: 800;
+                display: block;
+                padding: 10px 0;
+            }
+
+            .nav .nav-primary {
+                opacity: 1;
+            }
+
+                .nav .nav-primary:hover {
+                    opacity: 0.7;
+                }
+
+            .nav .nav-secondary {
+                opacity: 0.4;
+            }
+
+                .nav .nav-secondary:hover {
+                    opacity: 0.7;
+                }
+    </style>
+
+    <div class="container body-content" style="padding-left : 70px">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
