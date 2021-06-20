@@ -1,0 +1,82 @@
+﻿@model BankSystem.Models.Statement
+
+@{
+    ViewBag.Title = "Statement";
+    Layout = "~/Views/Shared/_bankLayout.cshtml";
+}
+
+@if (ViewData["wrongdates"] != null)
+{
+    <div style="color: #ff0000">@ViewData["wrongdates"]</div>
+}
+
+<h2>Statement</h2>
+
+@using (Html.BeginForm("Statement", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row form-horizontal">
+            <div class="form-group">
+                <div class="col-md-5">@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", placeholder = "Start Date", @readonly = "true" } })</div>
+                <div class="col-md-2" style="color:maroon; font-weight:bolder">To</div>
+                <div class="col-md-5">@Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", placeholder = "End Date", @readonly = "true" } })</div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5"><input type="submit" value="Submit" class="btn btn-primary" /></div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Transaction Date
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Amount
+            </th>
+        </tr>
+
+        @foreach (BankSystem.Models.Statemomentum item in Model.StatementList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TranDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TranType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+            </tr>
+
+        }
+
+    </table>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+        });
+    </script>
+}

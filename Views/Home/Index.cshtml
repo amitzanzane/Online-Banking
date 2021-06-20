@@ -1,0 +1,48 @@
+﻿@model BankSystem.Models.login
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+</script>
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<h3>Login</h3>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row form-horizontal">
+            <div class="form-group">
+                <div class="col-md-1">@Html.Label("Username")</div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.username, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-1">@Html.Label("Password")</div>
+                <div class="col-md-3">
+                    @Html.PasswordFor(x => x.password, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-1"><input type="submit" value="Log In" class="btn btn-primary" /></div>
+                <div class="col-md-3"><a href="@Url.Action("Register", "Home")" class="btn btn-default">Register</a></div>
+            </div>
+        </div>
+    </div>
+
+    <span class="resp-info"></span>
+}
+
+@if (ViewBag.attempt != null)
+{
+    @ViewBag.attempt
+}

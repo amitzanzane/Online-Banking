@@ -1,0 +1,42 @@
+﻿@model BankSystem.Models.transfer
+
+@{
+    ViewBag.Title = "Transfer";
+    Layout = "~/Views/Shared/_bankLayout.cshtml";
+}
+
+@if (ViewBag.text != null)
+{
+    <div style="color: #008000">@ViewBag.text</div>
+}
+
+<h2>Transfer</h2>
+
+@using (Html.BeginForm("Transfer", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row form-horizontal">
+            <div class="form-group">
+                <div class="col-md-1">@Html.Label("Account Number")</div>
+                <div class="col-md-3">@Html.TextBoxFor(x => x.AccountNumber, new { @class = "form-control" })</div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-1">@Html.Label("IFSC")</div>
+                <div class="col-md-3">@Html.TextBoxFor(x => x.IFSC, new { @class = "form-control" })</div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-1">@Html.Label("Account Holder")</div>
+                <div class="col-md-3">@Html.TextBoxFor(x => x.AccountHolder, new { @class = "form-control" })</div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-1">@Html.Label("Amount")</div>
+                <div class="col-md-3">@Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })</div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-1"><input type="submit" value="Send" class="btn btn-primary" /></div>
+                <div class="col-md-3"><a href="@Url.Action("Transfer", "Home")" class="btn btn-default">Cancel</a></div>
+            </div>
+        </div>
+    </div>
+}
+
